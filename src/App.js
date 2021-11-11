@@ -2,9 +2,12 @@ import styled, { keyframes } from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 `;
 
-// 애니메이션 : keyframes import 받아야함.
 const rotationAnimation = keyframes`
   0% {
     transform:rotate(0deg);
@@ -19,35 +22,34 @@ const rotationAnimation = keyframes`
   }
 `;
 
+const Emoji = styled.span`
+  font-size: 63px;
+`;
+
 const Box = styled.div`
   height: 200px;
   width: 200px;
   background-color: tomato;
-  animation: ${rotationAnimation} 1s linear infinite;
+  animation: ${rotationAnimation} 2s linear infinite;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 모든 태그를 styled-component로 사용할 필요 없음, 자식 스타일 설정 가능 */
-  span {
-    font-size: 63px;
-    /* 여기서 &은 span을 가리킴 */
+  /* span대신 Emoji를 target하면 as="p"와 관계없이 적용 & Box > Emoji만 스타일 적용!  */
+  ${Emoji} {
     &:hover {
-      font-size: 20px;
+      font-size: 98px;
     }
-    /* &:active {
-      opacity: 0;
-    } */
-  }
-  // &:hover와 같다.
-  span:hover {
+    &:active {
+    }
   }
 `;
 function App() {
   return (
     <Wrapper>
       <Box>
-        <span>😉</span>
+        <Emoji as="p">😉</Emoji> {/* 애니메이션 적용 O */}
       </Box>
+      <Emoji as="p">😉</Emoji> {/* 애니메이션 적용 X */}
     </Wrapper>
   );
 }
