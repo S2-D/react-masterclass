@@ -4,21 +4,20 @@ const Father = styled.div`
   display: flex;
 `;
 
-const Btn = styled.button`
-  color: white;
+// attrs 라는 속성을 사용해서 고정되는 Props나 다이나믹한 Props, required 기본 Tag의 props 등을 전달
+const Input = styled.input.attrs({ required: true, minLength: 10 })`
   background-color: tomato;
-  border: 0;
-  border-radius: 10px;
 `;
-
 function App() {
   return (
-    <Father>
-      <Btn>log in</Btn>
-      {/* Button 컴포넌트의 스타일은 그대로 쓰고싶지만, 태그의 종류를 a 태그로 바꾸고 싶을땐 'as' 속성 이용*/}
-      <Btn as="a" href="/">
-        log in
-      </Btn>
+    <Father as="header">
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
+      <Input></Input>
     </Father>
   );
 }
