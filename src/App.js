@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+
+const Father = styled.div`
+  display: flex;
+`;
+
+const Box = styled.div`
+  /* Adapting based on props */
+  background-color: ${(props) => props.bgColor};
+  height: 100px;
+  width: 100px;
+`;
+
+/* Extending Styles :  styled(Box) */
+const Circle = styled(Box)`
+  border-radius: 50px;
+`;
+
+const Text = styled.span``;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Father>
+      <Box bgColor="teal"></Box>
+      {/* prop으로 bgColor */}
+      <Circle bgColor="tomato"></Circle>
+    </Father>
   );
 }
 
