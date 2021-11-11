@@ -1,31 +1,35 @@
-import { prototype } from "core-js/core/dict";
 import styled from "styled-components";
 
-// interface : 타입스크립트의 객체 타입을 정의
-interface CircleProps {
+interface ContainerProps {
   bgColor: string;
+  borderColor: string;
 }
-const Container = styled.div<CircleProps>`
+
+const Container = styled.div<ContainerProps>`
   width: 200px;
   height: 200px;
   background-color: ${(props) => props.bgColor};
   border-radius: 100px;
+  border: 1px solid ${(props) => props.borderColor};
 `;
 
-function Circle({ bgColor }: CircleProps) {
-  return <Container bgColor={bgColor} />;
+interface CircleProps {
+  bgColor: string;
+  // ? -> optional
+  borderColor?: string;
+  // ( borderColor?: string; ) === (borderColor: string | undefined )
+  text?: string;
+}
+
+function Circle({ bgColor, borderColor, text = "default text" }: CircleProps) {
+  return (
+    <Container
+      bgColor={bgColor}
+      borderColor={borderColor ?? bgColor} /* borderColor 없으면 bgColor */
+    >
+      {text}
+    </Container>
+  );
 }
 
 export default Circle;
-
-interface PlayerShape {
-  name: string;
-  age: number;
-}
-
-const sayHello = (playerObj: PlayerShape) =>
-  `Hello ${playerObj.name} you are ${playerObj.age} years old.`;
-
-sayHello({ name: "nico", age: 12 });
-// sayHello({ name: "nico", age: 12, hello: 1 });
-// proptypes는 코드 실행 이후 에러발생 & typescript는 실행 전에 알림
