@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 interface ContainerProps {
   bgColor: string;
@@ -15,13 +16,19 @@ const Container = styled.div<ContainerProps>`
 
 interface CircleProps {
   bgColor: string;
-  // ? -> optional
   borderColor?: string;
-  // ( borderColor?: string; ) === (borderColor: string | undefined )
   text?: string;
 }
 
 function Circle({ bgColor, borderColor, text = "default text" }: CircleProps) {
+  //  useState()안에 default value를 넣어두면 타입스크립트가 알아서 타입 지정해줌.
+  const [conter, setConter] = useState(0);
+  // 없을 경우 undefined
+  const [value, setValue] = useState();
+  // 드물게 타입이 string으로 변경될 경우
+  const [color, setColor] = useState<string | number>(231);
+  setColor("#23497");
+
   return (
     <Container
       bgColor={bgColor}
