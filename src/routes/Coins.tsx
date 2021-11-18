@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 0px 20px;
+  padding: 20px;
   max-width: 480px;
   margin: 0 auto;
 `;
@@ -22,8 +22,9 @@ const Coin = styled.li`
   margin-bottom: 10px;
   border-radius: 20px;
   a {
+    display: flex;
     padding: 20px;
-    display: block;
+    align-items: center;
     transition: color 0.3s ease-in;
   }
   &:hover {
@@ -39,10 +40,16 @@ const Title = styled.h1`
 `;
 
 const Loader = styled.span`
+  margin-top: 20px;
   text-align: center;
   display: block;
 `;
 
+const Img = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+`;
 interface CoinInterface {
   id: string;
   name: string;
@@ -75,7 +82,14 @@ function Coins() {
         <CoinsList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+              <Link
+                to={{ pathname: `/${coin.id}`, state: { name: coin.name } }}
+              >
+                <Img
+                  src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                />
+                {coin.name} &rarr;
+              </Link>
             </Coin>
           ))}
         </CoinsList>
