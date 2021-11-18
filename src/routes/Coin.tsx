@@ -1,11 +1,11 @@
-import {useParams} from "react-router"
+import { useParams } from "react-router";
 
 interface RouteParams {
-  coinId :string;
+  coinId: string;
 }
 
 function Coin() {
-  const {coinId}  = useParams<RouteParams>();
+  const { coinId } = useParams<RouteParams>();
   return <h1>Coin:{coinId}</h1>;
 }
 
