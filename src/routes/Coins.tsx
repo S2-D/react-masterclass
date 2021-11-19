@@ -50,6 +50,7 @@ const Img = styled.img`
   height: 25px;
   margin-right: 10px;
 `;
+
 interface CoinInterface {
   id: string;
   name: string;
@@ -59,15 +60,16 @@ interface CoinInterface {
   is_active: boolean;
   type: string;
 }
+
 function Coins() {
   // coins State는  coins로 이루어진 array로 알려주기
-  const [coins, setCoin] = useState<CoinInterface[]>([]);
+  const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
       const response = await fetch("https://api.coinpaprika.com/v1/coins");
       const json = await response.json();
-      setCoin(json.slice(0, 100));
+      setCoins(json.slice(0, 100));
       setLoading(false);
     })();
   }, []);
