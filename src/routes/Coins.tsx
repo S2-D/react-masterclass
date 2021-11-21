@@ -68,16 +68,6 @@ function Coins() {
   //자동으로 isLoading 여부와 완료 되었을때 data에 값을 넣어준다. :0
   //useQuery 사용으로 한 줄로 아래 주석을 대체함!
   const { isLoading, data } = useQuery<Icoin[]>("allCoins", fetchCoins);
-  // const [coins, setCoins] = useState<CoinInterface[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");
-  //     const json = await response.json();
-  //     setCoins(json.slice(0, 100));
-  //     setLoading(false);
-  //   })();
-  // }, []);
   return (
     <Container>
       <Header>
