@@ -1,8 +1,10 @@
 import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { isDarkAtom } from "../atoms";
 
 const Container = styled.div`
   padding: 20px;
@@ -67,9 +69,8 @@ interface Icoin {
 interface ICoinsProps {}
 
 function Coins({}: ICoinsProps) {
-  //useQuery : 인자 2개 (첫번째: query 고유 식별자 / 두번째 : fetcher 함수)
-  //자동으로 isLoading 여부와 완료 되었을때 data에 값을 넣어준다. :0
-  //useQuery 사용으로 한 줄로 아래 주석을 대체함!
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   const { isLoading, data } = useQuery<Icoin[]>("allCoins", fetchCoins);
   return (
     <Container>
@@ -78,6 +79,7 @@ function Coins({}: ICoinsProps) {
       </Helmet>
       <Header>
         <Title>Coins</Title>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
