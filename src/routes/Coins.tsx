@@ -64,7 +64,11 @@ interface Icoin {
   type: string;
 }
 
-function Coins() {
+interface ICoinsProps {
+  toggleDark: () => void;
+}
+
+function Coins({ toggleDark }: ICoinsProps) {
   //useQuery : 인자 2개 (첫번째: query 고유 식별자 / 두번째 : fetcher 함수)
   //자동으로 isLoading 여부와 완료 되었을때 data에 값을 넣어준다. :0
   //useQuery 사용으로 한 줄로 아래 주석을 대체함!
@@ -76,6 +80,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coins</Title>
+        <button onClick={toggleDark}>Toggle Dark Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
