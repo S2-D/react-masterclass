@@ -6,10 +6,3 @@ export const darkTheme: DefaultTheme = {
   accentColor: "#feca57",
   cardBgColor: "transparent",
 };
-
-export const lightTheme: DefaultTheme = {
-  bgColor: "#feca57",
-  textColor: "black",
-  accentColor: "#222f3e",
-  cardBgColor: "white",
-};
